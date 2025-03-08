@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors Game</title>
+    <link rel="stylesheet" href="./FontAwesome-6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="info-player">
+            <input id="player-name" type="text" placeholder="Input username">
+           <div class="mode">
+            <button class="pwp">Play with Pc</button>
+            <button class="pwf">Play with Friends</button>
+           </div>
+        </div>
+        <div class="match-info">
+            <p>Player</p>
+        </div>
+        <div class="waiting">
+            <p></p>
+        </div>
+        <div class="items">
+            <div class="scissors">
+                <img id="scissors" src="./img/scissors.png" alt="Scissors">
+            </div>
+            <div class="rock">
+                <img id="rock" src="./img/rock.png" alt="Rock">
+            </div>
+            <div class="paper">
+                <img id="paper" src="./img/paper.png" alt="Paper">
+            </div>
+        </div>
+        <button class="restart">Restart</button>
+
+    </div>
+
+    <script src="./JQuery/jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
