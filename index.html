@@ -6,30 +6,40 @@
     <title>Rock-Paper-Scissors Game</title>
     <link rel="stylesheet" href="./FontAwesome-6.6.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://play-lh.googleusercontent.com/1B-oFt4IvomJuQtEWJP--jEv17NnM39EJgKzscb0j6LN-G1wIhh-WS2yJRANCcSV7g" type="image/x-icon">
 </head>
 <body>
     <div class="container">
         <div class="info-player">
-            <input id="player-name" type="text" placeholder="Input username">
+            <input id="player-name" type="text" placeholder="Input username" required>
+            <p class="error">Input username please...</p>
            <div class="mode">
             <button class="pwp">Play with Pc</button>
             <button class="pwf">Play with Friends</button>
            </div>
         </div>
-        <div class="match-info">
-            <p>Player</p>
-        </div>
-        <div class="waiting">
-            <p></p>
-        </div>
-        <div class="items">
-            <div class="scissors">
+        <div class="items pc-items">
+            <div class="scissors pc-s pc-item">
                 <img id="scissors" src="./img/scissors.png" alt="Scissors">
             </div>
-            <div class="rock">
+            <div class="rock pc-r pc-item">
                 <img id="rock" src="./img/rock.png" alt="Rock">
             </div>
-            <div class="paper">
+            <div class="paper pc-p pc-item">
+                <img id="paper" src="./img/paper.png" alt="Paper">
+            </div>
+        </div>
+        <div class="match-info">
+            <p>V/S</p>
+        </div>
+        <div class="items">
+            <div class="scissors player-s">
+                <img id="scissors" src="./img/scissors.png" alt="Scissors">
+            </div>
+            <div class="rock player-r">
+                <img id="rock" src="./img/rock.png" alt="Rock">
+            </div>
+            <div class="paper player-p">
                 <img id="paper" src="./img/paper.png" alt="Paper">
             </div>
         </div>

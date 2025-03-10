@@ -5,28 +5,12 @@
 }
 
 .container {
-    padding: 6rem;
+    padding: 10px;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     gap: 4rem;
-}
-
-.waiting {
-    display: none;
-    top: 20rem;
-    position: absolute;
-    text-align: center;
-}
-
-.waiting p {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 3px solid gainsboro;
-    border-top: 3px solid black;
-    animation: loading 1s linear infinite;
 }
 
 @keyframes loading {
@@ -43,7 +27,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .mode {
@@ -56,22 +40,32 @@
 .items {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 40px; 
 }
+
 
 .items img {
     width: 130px;
     height: 130px;
-    cursor: not-allowed;
 }
 
 .scissors, .rock, .paper {
-    cursor: pointer;
+    border-radius: 50%;
 }
 
-.scissors:hover, .rock:hover, .paper:hover {
+.player-s:hover, .player-r:hover, .player-p:hover {
     transform: scale(1.1);
     transition: .3s ease-in-out;
+}
+
+.player-s:hover {
+    box-shadow: 4px 4px 20px darkgreen;
+}
+.player-r:hover {
+    box-shadow: 4px 4px 20px darkgoldenrod;
+}
+.player-p:hover {
+    box-shadow: 4px 4px 20px darkmagenta;
 }
 
 button {
@@ -91,16 +85,22 @@ button:hover {
 
 input[type="text"] {
     padding: 10px;
-    border-color: gainsboro;
-    text-indent: 10px;
+    border: 1px solid gainsboro;
     border-radius: 10px;
     font-size: 1.1em;
+    text-align: center;
+}
+
+.error {
+    color: red;
+    display: none;
 }
 
 .unactive {
+    cursor: not-allowed;
     transition: .3s ease-in-out;
     transform: scale(0.95);
-    background-color: black;
+    background-color: grey;
     color: white;
     box-shadow: inset 1px 0px 5px lightcoral, -1px 0px 10px lightblue;
 }
@@ -121,3 +121,4 @@ input[type="text"] {
         transform: scale(1);
     }
 }
+

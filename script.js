@@ -2,6 +2,7 @@ $(document).ready(function () {
   let playerName = "";
 
   $(".restart").addClass("unactive");
+  $(".pc-items").hide();
 
   $(".pwp").click(function (e) {
     e.preventDefault();
@@ -9,18 +10,27 @@ $(document).ready(function () {
 
     if (playerName === "") {
       $("#player-name").focus();
+      $(".error").css("display", "block");
+      setTimeout(() => $(".error").css("display", "none"), 1000);
       $("#player-name").addClass("impress");
-      setTimeout(() => {
-        $("#player-name").removeClass("impress");
-      }, 100);
+      setTimeout(() => $("#player-name").removeClass("impress"), 100);
     } else {
-      $(".items img").css("cursor", "pointer");
+      $(".pc-items").show();
+      $(".player-s, .player-r, .player-p").css("cursor", "pointer");
       $(".pwp").show();
       $(".pwf").hide();
       $(".restart").removeClass("unactive");
-      $(".match-info p").text(playerName);
-      let pcChoice = Math.floor(Math.random() * 3);
-      playWithPc(pcChoice, playerName);
+      $(".match-info p").text(playerName + " go first...");
+      $(".player-s").click(() => {
+        $(".player-s").css("box-shadow", "4px 4px 20px darkgreen");
+      });
+      $(".player-r").click(() => {
+        $(".player-r").css("box-shadow", "4px 4px 20px darkgoldenrod");
+      });
+      $(".player-p").click(() => {
+        $(".player-p").css("box-shadow", "4px 4px 20px darkmagenta");
+      });
+      playWithPc(playerName);
     }
   });
 
@@ -45,61 +55,62 @@ $(document).ready(function () {
 
   $(".restart").click(function (e) {
     e.preventDefault();
-    mode = -1;
-    $(".pwp").show();
-    $(".pwf").show();
+    $(".pwp, .pwf").show();
     $(".match-info p").text("Player");
     $("#player-name").val("");
     $(".restart").addClass("unactive");
+    $(".pc-items").hide();
+    $(".items img").css("box-shadow", "none");
+    $(".pc-s, .pc-r, .pc-p").css("border", "none");
   });
 
-  function playWithPc(pcChoice, playerName) {
-    const res1 = playerName + "...Winner !!! ><";
-    const res2 = playerName + "...Loser! :<";
+  function playWithPc(playerName) {
+    const res1 = playerName + "...You Win !!! ><";
+    const res2 = playerName + "...You Lose! :<";
     const res3 = playerName + "...Not bad but not good :))";
 
-    $("#scissors").click(function (e) {
+    $(".items img").click(function (e) {
       e.preventDefault();
-      if (pcChoice == 0) {
-        loadRes(res3);
-      } else if (pcChoice == 1) {
-        loadRes(res2);
-      } else if (pcChoice == 2) {
-        loadRes(res1);
-      }
-      pcChoice = Math.floor(Math.random() * 3);
-    });
+      let pcChoice = Math.floor(Math.random() * 3);
 
-    $("#rock").click(function (e) {
-      e.preventDefault();
-      if (pcChoice == 0) {
-        loadRes(res1);
-      } else if (pcChoice == 1) {
-        loadRes(res3);
-      } else if (pcChoice == 2) {
-        loadRes(res2);
-      }
-      pcChoice = Math.floor(Math.random() * 3);
-    });
+      let result;
+      let playerChoice = $(this).attr("id");
 
-    $("#paper").click(function (e) {
-      e.preventDefault();
-      if (pcChoice == 0) {
-        loadRes(res2);
-      } else if (pcChoice == 1) {
-        loadRes(res1);
-      } else if (pcChoice == 2) {
-        loadRes(res3);
+      if (playerChoice === "scissors") {
+        result = pcChoice === 0 ? res3 : pcChoice === 1 ? res2 : res1;
+      } else if (playerChoice === "rock") {
+        result = pcChoice === 0 ? res1 : pcChoice === 1 ? res3 : res2;
+      } else if (playerChoice === "paper") {
+        result = pcChoice === 0 ? res2 : pcChoice === 1 ? res1 : res3;
       }
-      pcChoice = Math.floor(Math.random() * 3);
+
+      loadRes(result, pcChoice);
     });
   }
 
-  function loadRes(res) {
-    $(".waiting").show();
+  function loadRes(res, pcChoice) {
+    $(".match-info p").text("PC is choosing...");
+
     setTimeout(() => {
       $(".waiting").hide();
+      $(".pc-s, .pc-r, .pc-p").css("border", "none");
+
+      if (pcChoice == 0) {
+        $(".pc-s").css("border", "3px solid black");
+      } else if (pcChoice == 1) {
+        $(".pc-r").css("border", "3px solid black");
+      } else if (pcChoice == 2) {
+        $(".pc-p").css("border", "3px solid black");
+      }
+
       $(".match-info p").text(res);
-    }, 1000);
+
+      setTimeout(() => {
+        $(".player-s, .player-r, .player-p").css("box-shadow", "none");
+        $(".pc-s, .pc-r, .pc-p").css("border", "none");
+        $(".match-info p").text("Next match...");
+      }, 2000);
+    }, 3000);
   }
+
 });
