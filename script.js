@@ -92,7 +92,6 @@ $(document).ready(function () {
     $(".match-info p").text("PC is choosing...");
 
     setTimeout(() => {
-      $(".waiting").hide();
       $(".pc-s, .pc-r, .pc-p").css("border", "none");
 
       if (pcChoice == 0) {
