@@ -1,53 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock-Paper-Scissors Game</title>
-    <link rel="stylesheet" href="./FontAwesome-6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="https://play-lh.googleusercontent.com/1B-oFt4IvomJuQtEWJP--jEv17NnM39EJgKzscb0j6LN-G1wIhh-WS2yJRANCcSV7g" type="image/x-icon">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="shortcut icon"
+      href="https://play-lh.googleusercontent.com/1B-oFt4IvomJuQtEWJP--jEv17NnM39EJgKzscb0j6LN-G1wIhh-WS2yJRANCcSV7g"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
     <div class="container">
-        <div class="info-player">
-            <input id="player-name" type="text" placeholder="Input username" required>
-            <p class="error">Input username please...</p>
-           <div class="mode">
-            <button class="pwp">Play with Pc</button>
-            <button class="pwf">Play with Friends</button>
-           </div>
-        </div>
-        <div class="items pc-items">
-            <div class="scissors pc-s pc-item">
-                <img id="scissors" src="./img/scissors.png" alt="Scissors">
-            </div>
-            <div class="rock pc-r pc-item">
-                <img id="rock" src="./img/rock.png" alt="Rock">
-            </div>
-            <div class="paper pc-p pc-item">
-                <img id="paper" src="./img/paper.png" alt="Paper">
-            </div>
-        </div>
-        <div class="match-info">
-            <p>V/S</p>
-        </div>
-        <div class="items">
-            <div class="scissors player-s">
-                <img id="scissors" src="./img/scissors.png" alt="Scissors">
-            </div>
-            <div class="rock player-r">
-                <img id="rock" src="./img/rock.png" alt="Rock">
-            </div>
-            <div class="paper player-p">
-                <img id="paper" src="./img/paper.png" alt="Paper">
-            </div>
-        </div>
-        <button class="restart">Restart</button>
+      <div class="instruction">
+        <p>
+          <em>
+            1. Choose mode: Play with Pc (1 v/s Pc) or Play with friend (1 v/s
+            1).
+            <br />2. Choose item: scissors, rock, paper. <br>Your items is the second line. <br />3. Click Start to
+            lock the item and the other will choose next.<br />4. Click Restart
+            if want to change mode.
+          </em>
+        </p>
+      </div>
+      <div class="mode">
+        <button class="pwp">Pc <br> v/s <br> Player</button>
+        <button class="pwf">Player 1 <br> v/s <br> Player 2</button>
+      </div>
 
+      <div class="items pc-items">
+        <div class="scissors pc-s pc-item">
+          <img id="scissors" src="./img/scissors.png" alt="Scissors" />
+        </div>
+        <div class="rock pc-r pc-item">
+          <img id="rock" src="./img/rock.png" alt="Rock" />
+        </div>
+        <div class="paper pc-p pc-item">
+          <img id="paper" src="./img/paper.png" alt="Paper" />
+        </div>
+      </div>
+
+      <div class="match-info">
+        <p><strong>Choose mode before start game !</strong></p>
+      </div>
+
+      <div class="items">
+        <div class="scissors player-s">
+          <img id="scissors" src="./img/scissors.png" alt="Scissors" />
+        </div>
+        <div class="rock player-r">
+          <img id="rock" src="./img/rock.png" alt="Rock" />
+        </div>
+        <div class="paper player-p">
+          <img id="paper" src="./img/paper.png" alt="Paper" />
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 2rem">
+        <button class="start">Start</button>
+        <button class="restart">Restart</button>
+      </div>
     </div>
 
     <script src="./JQuery/jquery-3.7.1.min.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

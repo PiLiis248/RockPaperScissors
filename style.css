@@ -5,12 +5,24 @@
 }
 
 .container {
-    padding: 10px;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, white, lavender);
+    padding: 1.5rem;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     gap: 4rem;
+}
+
+.instruction {
+    position: absolute;
+    left: 2rem;
+    top: 5rem;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 20px darkblue;
 }
 
 @keyframes loading {
@@ -55,7 +67,7 @@
 
 .player-s:hover, .player-r:hover, .player-p:hover {
     transform: scale(1.1);
-    transition: .3s ease-in-out;
+    transition: .2s ease-in-out;
 }
 
 .player-s:hover {
@@ -89,6 +101,10 @@ input[type="text"] {
     border-radius: 10px;
     font-size: 1.1em;
     text-align: center;
+}
+
+.input-name, .restart {
+    display: none;
 }
 
 .error {

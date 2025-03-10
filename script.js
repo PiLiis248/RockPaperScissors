@@ -1,115 +1,133 @@
 $(document).ready(function () {
-  let playerName = "";
+  let playerChoice = -1;
 
-  $(".restart").addClass("unactive");
+  $(".start").addClass("unactive");
   $(".pc-items").hide();
 
   $(".pwp").click(function (e) {
     e.preventDefault();
-    playerName = $("#player-name").val().trim();
+    $(".pwf").hide();
+    $(".restart").show();
 
-    if (playerName === "") {
-      $("#player-name").focus();
-      $(".error").css("display", "block");
-      setTimeout(() => $(".error").css("display", "none"), 1000);
-      $("#player-name").addClass("impress");
-      setTimeout(() => $("#player-name").removeClass("impress"), 100);
-    } else {
-      $(".pc-items").show();
-      $(".player-s, .player-r, .player-p").css("cursor", "pointer");
-      $(".pwp").show();
-      $(".pwf").hide();
-      $(".restart").removeClass("unactive");
-      $(".match-info p").text(playerName + " go first...");
-      $(".player-s").click(() => {
-        $(".player-s").css("box-shadow", "4px 4px 20px darkgreen");
+    $(".pc-items").show();
+    $(".player-s, .player-r, .player-p").css("cursor", "pointer");
+    $(".start").removeClass("unactive");
+    $(".match-info p").html("<strong>=> You go first <=</strong>");
+    $(".player-s").click(() => {
+      $(".player-s").css({
+        "border":"3px solid darkgreen",
+        "box-shadow": "4px 4px 20px darkgreen",
+        "transform": "scale(1.1)",
       });
-      $(".player-r").click(() => {
-        $(".player-r").css("box-shadow", "4px 4px 20px darkgoldenrod");
-      });
-      $(".player-p").click(() => {
-        $(".player-p").css("box-shadow", "4px 4px 20px darkmagenta");
-      });
-      playWithPc(playerName);
-    }
-  });
-
-  $(".pwf").click(function (e) {
-    e.preventDefault();
-
-    let playerName = $("#player-name").val().trim();
-
-    if (playerName === "") {
-      $("#player-name").focus();
-      $("#player-name").addClass("impress");
-      setTimeout(() => {
-        $("#player-name").removeClass("impress");
-      }, 100);
-    } else {
-      $(".pwf").show();
-      $(".pwp").hide();
-      $(".restart").removeClass("unactive");
-      playWithFriends();
-    }
-  });
-
-  $(".restart").click(function (e) {
-    e.preventDefault();
-    $(".pwp, .pwf").show();
-    $(".match-info p").text("Player");
-    $("#player-name").val("");
-    $(".restart").addClass("unactive");
-    $(".pc-items").hide();
-    $(".items img").css("box-shadow", "none");
-    $(".pc-s, .pc-r, .pc-p").css("border", "none");
-  });
-
-  function playWithPc(playerName) {
-    const res1 = playerName + "...You Win !!! ><";
-    const res2 = playerName + "...You Lose! :<";
-    const res3 = playerName + "...Not bad but not good :))";
-
-    $(".items img").click(function (e) {
-      e.preventDefault();
-      let pcChoice = Math.floor(Math.random() * 3);
-
-      let result;
-      let playerChoice = $(this).attr("id");
-
-      if (playerChoice === "scissors") {
-        result = pcChoice === 0 ? res3 : pcChoice === 1 ? res2 : res1;
-      } else if (playerChoice === "rock") {
-        result = pcChoice === 0 ? res1 : pcChoice === 1 ? res3 : res2;
-      } else if (playerChoice === "paper") {
-        result = pcChoice === 0 ? res2 : pcChoice === 1 ? res1 : res3;
-      }
-
-      loadRes(result, pcChoice);
+      $(".player-r, .player-p").css({"box-shadow":"none", "border":"none", "transform":"scale(1)"});
+      playerChoice = 0;
     });
+    $(".player-r").click(() => {
+      $(".player-r").css({
+        "border":"3px solid darkgoldenrod",
+        "box-shadow": "4px 4px 20px darkgoldenrod",
+        "transform": "scale(1.1)",
+      });
+      $(".player-s, .player-p").css({"box-shadow":"none", "border":"none", "transform":"scale(1)"});
+      playerChoice = 1;
+    });
+    $(".player-p").click(() => {
+      $(".player-p").css({
+        "border":"3px solid darkmagenta",
+        "box-shadow": "4px 4px 20px darkmagenta",
+        "transform": "scale(1.1)",
+      });
+      $(".player-s, .player-r").css({"box-shadow":"none", "border":"none", "transform":"scale(1)"});
+      playerChoice = 2;
+    });
+  });
+
+  $(".start").click(() => playWithPc(playerChoice));
+
+  function playWithPc(playerChoice) {
+    const res1 = "You Win !!! ><";
+    const res2 = "You Lose! :<";
+    const res3 = "Not bad but not good :))";
+
+    let opChoice = Math.floor(Math.random() * 3);
+
+    let result;
+
+    if (playerChoice === 0) {
+      result = opChoice === 0 ? res3 : opChoice === 1 ? res2 : res1;
+    } else if (playerChoice === 1) {
+      result = opChoice === 0 ? res1 : opChoice === 1 ? res3 : res2;
+    } else if (playerChoice === 2) {
+      result = opChoice === 0 ? res2 : opChoice === 1 ? res1 : res3;
+    }
+
+    loadRes(result, opChoice);
   }
 
-  function loadRes(res, pcChoice) {
-    $(".match-info p").text("PC is choosing...");
+  function loadRes(res, opChoice) {
+    $(".match-info p").html("<strong>PC is choosing...</strong>");
 
     setTimeout(() => {
       $(".pc-s, .pc-r, .pc-p").css("border", "none");
 
-      if (pcChoice == 0) {
+      if (opChoice == 0) {
         $(".pc-s").css("border", "3px solid black");
-      } else if (pcChoice == 1) {
+      } else if (opChoice == 1) {
         $(".pc-r").css("border", "3px solid black");
-      } else if (pcChoice == 2) {
+      } else if (opChoice == 2) {
         $(".pc-p").css("border", "3px solid black");
       }
 
-      $(".match-info p").text(res);
+      $(".match-info p").html(`<strong>${res}</strong>`);
 
       setTimeout(() => {
-        $(".player-s, .player-r, .player-p").css("box-shadow", "none");
+        $(".player-s, .player-r, .player-p").css({"box-shadow":"none", "border":"none", "transform":"scale(1)"});
         $(".pc-s, .pc-r, .pc-p").css("border", "none");
-        $(".match-info p").text("Next match...");
+        $(".match-info p").html("<strong>Next match...</strong>");
       }, 2000);
     }, 3000);
   }
 
+  $(".pwf").click(function (e) {
+    e.preventDefault();
+    $(".pwp").hide();
+    $(".restart").show();
+
+    $(".pc-items").show();
+    $(".player-s, .player-r, .player-p").css("cursor", "pointer");
+    $(".start").removeClass("unactive");
+    $(".match-info p").html("<strong>=> You go first <=</strong>");
+    $(".player-s").click(() => {
+      $(".player-s").css({
+        "border":"3px solid darkgreen",
+        "box-shadow": "4px 4px 20px darkgreen",
+        "transform": "scale(1.1)",
+      });
+      $(".player-r, .player-p").css({"box-shadow":"none", "border":"none", "transform":"scale(1)"});
+      playerChoice = 0;
+    });
+    $(".player-r").click(() => {
+      $(".player-r").css({
+        "border":"3px solid darkgoldenrod",
+        "box-shadow": "4px 4px 20px darkgoldenrod",
+        "transform": "scale(1.1)",
+      });
+      $(".player-s, .player-p").css({"box-shadow":"none", "border":"none", "transform":"scale(1)"});
+      playerChoice = 1;
+    });
+    $(".player-p").click(() => {
+      $(".player-p").css({
+        "border":"3px solid darkmagenta",
+        "box-shadow": "4px 4px 20px darkmagenta",
+        "transform": "scale(1.1)",
+      });
+      $(".player-s, .player-r").css({"box-shadow":"none", "border":"none", "transform":"scale(1)"});
+      playerChoice = 2;
+    });
+  });
+
+  $(".restart").click(function (e) {
+    e.preventDefault();
+    window.location.reload();
+  });
 });
