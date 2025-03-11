@@ -14,19 +14,33 @@
   <body>
     <div class="container">
       <div class="instruction">
-        <p>
+        <p class="with-pc">
           <em>
-            1. Choose mode: Play with Pc (1 v/s Pc) or Play with friend (1 v/s
-            1).
-            <br />2. Choose item: scissors, rock, paper. <br>Your items is the second line. <br />3. Click Start to
-            lock the item and the other will choose next.<br />4. Click Restart
-            if want to change mode.
+            1. Choose item: scissors, rock, paper. <br />Your items is the
+            second line. <br />2. Click Start to lock the item and the other
+            will choose next.<br />3. Click Restart if want to change mode.
+          </em>
+        </p>
+        <p class="with-friend">
+          <em>
+            1. Player 1 choose item: scissors, rock, paper. <br />2. Click Next
+            then let Player 2 choose item <br />
+            3. Click Start to lock the items <br />3. Click Restart if want to
+            change mode.
           </em>
         </p>
       </div>
       <div class="mode">
-        <button class="pwp">Pc <br> v/s <br> Player</button>
-        <button class="pwf">Player 1 <br> v/s <br> Player 2</button>
+        <button class="pwp">
+          Pc <br />
+          v/s <br />
+          Player
+        </button>
+        <button class="pwf">
+          Player 1 <br />
+          v/s <br />
+          Player 2
+        </button>
       </div>
 
       <div class="items pc-items">
@@ -58,6 +72,7 @@
       </div>
 
       <div style="display: flex; gap: 2rem">
+        <button class="next">Next</button>
         <button class="start">Start</button>
         <button class="restart">Restart</button>
       </div>
