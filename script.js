@@ -11,6 +11,7 @@ $(document).ready(function () {
 
   $(".start").addClass("unactive");
   $(".pc-items").hide();
+  $(".items").css("cursor", "not-allowed");
 
   $(".pwp").click(function (e) {
     e.preventDefault();
@@ -109,6 +110,8 @@ $(document).ready(function () {
   });
 
   function prepareItems() {
+    $(".items").css("cursor", "pointer");
+    
     if (mode == 0) {
       $(".pwf").hide();
       $(".restart").show();
