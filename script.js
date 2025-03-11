@@ -164,7 +164,11 @@ $(document).ready(function () {
       $(".match-info p").html("<strong>PC is choosing...</strong>");
 
       setTimeout(() => {
-        $(".pc-s, .pc-r, .pc-p").css("border", "none");
+        $(".pc-s, .pc-r, .pc-p").css({
+          "box-shadow": "none",
+          border: "none",
+          transform: "scale(1)",
+        });
 
         resHighLight(opChoice, "pc");
 
@@ -176,7 +180,11 @@ $(document).ready(function () {
             border: "none",
             transform: "scale(1)",
           });
-          $(".pc-s, .pc-r, .pc-p").css("border", "none");
+          $(".pc-s, .pc-r, .pc-p").css({
+            "box-shadow": "none",
+            border: "none",
+            transform: "scale(1)",
+          });
           $(".match-info p").html("<strong>Next match...</strong>");
         }, 2000);
       }, 3000);
